@@ -15,13 +15,13 @@ public class Calendar {
     private Long id;
     private String title;
     private String description;
-    private String username;
+    private String userName;
     private String password;
 
-    public Calendar(String title, String description, String username, String password) {
+    public Calendar(String title, String description, String userName, String password) {
         this.title = title;
         this.description = description;
-        this.username = username;
+        this.userName = userName;
         this.password = password;
     }
 
