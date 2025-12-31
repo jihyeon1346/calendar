@@ -9,14 +9,18 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table(name = "calendars")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Calendar {
+public class Calendar extends BaseEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(length = 50, nullable = false)
     private String title;
     private String description;
+    @Column(length = 50, nullable = false)
     private String userName;
+    @Column(length = 50, nullable = false)
     private String password;
+
 
     public Calendar(String title, String description, String userName, String password) {
         this.title = title;

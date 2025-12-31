@@ -8,7 +8,7 @@ RequestBody
 
 json
 {
-    "tilte" : "계획짜기",
+    "title" : "계획짜기",
     "description" : "26년 계획짜기",
     "userName" : "홍길동",
     "password" : "1234"
@@ -17,7 +17,7 @@ Response (201 Created)
 json
 {
     "id" : 1,
-    "tilte" : "계획짜기",
+    "title" : "계획짜기",
     "description" : "26년 계획짜기",
     "userName" : "홍길동",
     "createdAt": "2025-12-31T12:00:00",
@@ -42,7 +42,7 @@ json
     },
     {
         "id" : 1,
-        "tilte" : "계획짜기",
+        "title" : "계획짜기",
         "description" : "26년 계획짜기",
         "userName" : "홍길동",
         "createdAt": "2025-12-31T12:00:00",
@@ -60,7 +60,7 @@ Response (200 OK)
 json
 {
    "id" : 1,
-   "tilte" : "계획짜기",
+   "title" : "계획짜기",
    "description" : "26년 계획짜기",
    "userName" : "홍길동",
    "createdAt": "2025-12-31T12:00:00",
@@ -85,7 +85,7 @@ Response (200 OK)
 json
 {
     "id" : 1,
-    "tilte" : "계획짜기 (수정)",
+    "title" : "계획짜기 (수정)",
     "description" : "26년 계획짜기",
     "userName" : "홍길동",
     "createdAt": "2025-12-31T12:00:00",
