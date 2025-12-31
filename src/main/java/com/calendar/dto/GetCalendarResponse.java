@@ -1,12 +1,11 @@
-package com.dto;
+package com.calendar.dto;
 
 import lombok.Getter;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Getter
-public class CreateCalendarResponse {
+public class GetCalendarResponse {
     private final Long id;
     private final String userName;
     private final String description;
@@ -14,7 +13,7 @@ public class CreateCalendarResponse {
     private final LocalDateTime createdAt;
     private final LocalDateTime modifiedAt;
 
-    public CreateCalendarResponse(Long id, String userName, String description, String title, LocalDateTime createdAt, LocalDateTime modifiedAt) {
+    public GetCalendarResponse(Long id, String userName, String description, String title, LocalDateTime createdAt, LocalDateTime modifiedAt) {
         this.id = id;
         this.userName = userName;
         this.description = description;

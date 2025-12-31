@@ -1,10 +1,8 @@
-package com.controller;
+package com.calendar.controller;
 
-import com.dto.CreateCalendarRequest;
-import com.dto.CreateCalendarResponse;
-import com.dto.GetCalendarResponse;
-import com.repository.CalendarRepository;
-import com.service.CalendarService;
+
+import com.calendar.dto.*;
+import com.calendar.service.CalendarService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -29,8 +27,21 @@ public class CalendarController {
         return ResponseEntity.status(HttpStatus.OK).body(calendarService.findAll());
     }
 
-    @GetMapping("/calendars/{calendars{id}")
-    public ResponseEntity<GetCalendarResponse> getOne(@PathVariable("calendars") Long calendarsId){
+    @GetMapping("/calendars/{calendarsid}")
+    public ResponseEntity<GetCalendarResponse> getOne(@PathVariable Long calendarsId){
         return ResponseEntity.status(HttpStatus.OK).body(calendarService.findOne(calendarsId));
+    }
+
+    @PutMapping("/calendars/{calendarsId}")
+    public ResponseEntity<UpdateCalendarResponse> update(
+            @PathVariable Long calendarsId,
+            @RequestBody UpdateCalendarRequest request)
+            {
+        return ResponseEntity.status(HttpStatus.OK).body(calendarService.update(calendarsId, request));
+    }
+
+    @DeleteMapping("/calendars/{calendarsId}")
+    public void delete(@PathVariable Long calendarsId){
+        calendarService.delete(calendarsId);
     }
 }

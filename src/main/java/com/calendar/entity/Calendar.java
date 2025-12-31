@@ -1,4 +1,4 @@
-package com.entity;
+package com.calendar.entity;
 
 import jakarta.persistence.*;
 import lombok.AccessLevel;
@@ -23,6 +23,13 @@ public class Calendar extends BaseEntity{
 
 
     public Calendar(String title, String description, String userName, String password) {
+        this.title = title;
+        this.description = description;
+        this.userName = userName;
+        this.password = password;
+    }
+
+    public void update(String title, String description, String userName, String password){
         this.title = title;
         this.description = description;
         this.userName = userName;

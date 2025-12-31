@@ -1,9 +1,9 @@
-package com.dto;
+package com.calendar.dto;
 
 import lombok.Getter;
 
 @Getter
-public class CreateCalendarRequest {
+public class UpdateCalendarRequest {
     private String description;
     private String userName;
     private String title;

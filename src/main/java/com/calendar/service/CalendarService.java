@@ -1,12 +1,9 @@
-package com.service;
+package com.calendar.service;
 
-import com.dto.CreateCalendarRequest;
-import com.dto.CreateCalendarResponse;
-import com.dto.GetCalendarResponse;
-import com.entity.Calendar;
-import com.repository.CalendarRepository;
+import com.calendar.dto.*;
+import com.calendar.entity.Calendar;
+import com.calendar.repository.CalendarRepository;
 import lombok.RequiredArgsConstructor;
-import org.jspecify.annotations.Nullable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -65,5 +62,35 @@ public class CalendarService {
                 calendar.getCreatedAt(),
                 calendar.getModifiedAt()
         );
+    }
+
+    @Transactional
+    public UpdateCalendarResponse update(Long calendarsId, UpdateCalendarRequest request) {
+        Calendar calendar = calendarRepository.findById(calendarsId).orElseThrow(
+                () -> new IllegalStateException("없는 일정입니다."));
+        calendar.update(
+                request.getUserName(),
+                request.getDescription(),
+                request.getTitle(),
+                request.getPassword());
+
+        return new UpdateCalendarResponse(
+                calendar.getId(),
+                calendar.getUserName(),
+                calendar.getDescription(),
+                calendar.getTitle(),
+                calendar.getCreatedAt(),
+                calendar.getModifiedAt()
+        );
+
+    }
+
+    @Transactional
+    public void delete(Long calendarsId) {
+        boolean existence = calendarRepository.existsById(calendarsId);
+        if (!existence) {
+            throw new IllegalStateException("없는 일정입니다.");
+        }
+        calendarRepository.deleteById(calendarsId);
     }
 }
