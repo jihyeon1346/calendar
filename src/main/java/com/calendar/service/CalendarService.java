@@ -18,8 +18,11 @@ public class CalendarService {
 
     @Transactional
     public CreateCalendarResponse save(CreateCalendarRequest request) {
-        Calendar calendar = new Calendar(request.getUserName(), request.getDescription(),
-                request.getTitle(),  request.getPassword());
+        Calendar calendar = new Calendar(
+                request.getTitle(),
+                request.getDescription(),
+                request.getUserName(),
+                request.getPassword());
         Calendar savedCalendar = calendarRepository.save(calendar);
         return new CreateCalendarResponse(
                 savedCalendar.getId(),
@@ -31,8 +34,13 @@ public class CalendarService {
     }
 
     @Transactional(readOnly = true)
-    public List<GetCalendarResponse> findAll() {
-        List<Calendar> calendars = calendarRepository.findAll();
+    public List<GetCalendarResponse> findAll(String userName) {
+            List<Calendar> calendars;
+        if (userName != null) {
+            calendars = calendarRepository.findAllByUserNameOrderByModifiedAtDesc(userName);
+        } else {
+            calendars = calendarRepository.findAllByOrderByModifiedAtDesc();
+        }
         List<GetCalendarResponse> dtos = new ArrayList<>();
         for(Calendar calendar : calendars) {
             GetCalendarResponse response = new GetCalendarResponse(
