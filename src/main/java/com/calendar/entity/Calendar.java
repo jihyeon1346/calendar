@@ -5,6 +5,8 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Getter
 @Entity
 @Table(name = "calendars")
@@ -20,8 +22,6 @@ public class Calendar extends BaseEntity{
     private String userName;
     @Column(length = 50, nullable = false)
     private String password;
-
-
     public Calendar(String title, String description, String userName, String password) {
         this.title = title;
         this.description = description;
@@ -29,9 +29,8 @@ public class Calendar extends BaseEntity{
         this.password = password;
     }
 
-    public void update(String title, String description, String userName, String password){
+    public void update(String title, String userName, String password){
         this.title = title;
-        this.description = description;
         this.userName = userName;
         this.password = password;
     }

@@ -35,7 +35,7 @@ public class CalendarService {
 
     @Transactional(readOnly = true)
     public List<GetCalendarResponse> findAll(String userName) {
-            List<Calendar> calendars;
+        List<Calendar> calendars;
         if (userName != null) {
             calendars = calendarRepository.findAllByUserNameOrderByModifiedAtDesc(userName);
         } else {
@@ -77,10 +77,11 @@ public class CalendarService {
         Calendar calendar = calendarRepository.findById(calendarsId).orElseThrow(
                 () -> new IllegalStateException("없는 일정입니다."));
         calendar.update(
-                request.getUserName(),
-                request.getDescription(),
                 request.getTitle(),
-                request.getPassword());
+                request.getUserName(),
+                request.getPassword()
+        );
+
 
         return new UpdateCalendarResponse(
                 calendar.getId(),
