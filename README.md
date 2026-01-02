@@ -1,7 +1,8 @@
 # API 명세서
+## calendar table
 ## 1. 일정 생성
 Method : POST
-EndPoint : /api/calendars
+EndPoint : http://localhost:8080/calendars
 
 
 RequestBody
@@ -26,8 +27,8 @@ json
 
 ## 2. 전체 일정 조회
 Method : GET
-EndPoint : /api/calendars
-
+EndPoint : http://localhost:8080/calendars
+RequestParam : userName(필수가아님)
 Response
 
 json
@@ -52,7 +53,7 @@ json
 
 ## 3. 선택 일정 조회
 Method : GET
-EndPoint : /api/calendars{id}
+EndPoint : http://localhost:8080/calendars{id}
 Path Variable : id(고유 식별자)
 
 Response (200 OK)
@@ -65,11 +66,20 @@ json
    "userName" : "홍길동",
    "createdAt": "2025-12-31T12:00:00",
    "modifiedAt": "2025-12-31T12:00:00"
+   "comments":[
+    {
+        "id": 1,
+        "userName": "안녕하세요",
+        "content": "홍길동",
+        "createdAt": "2026-01-02T11:15:46.121735",
+        "updatedAt": "2026-01-02T11:15:46.121735"
+        }   
+    ]
 }
 
 ## 4. 일정 수정
 Method : PUT
-EndPoint : /api/calendars{id}
+EndPoint : http://localhost:8080/calendars{id}
 Path Variable : id(고유 식별자)
 
 json
@@ -95,7 +105,7 @@ json
 ## 5. 일정 삭제
 
 Method : DELETE
-EndPoint : /api/calendars{id}
+EndPoint : http://localhost:8080/calendars{id}
 Path Variable : id(고유 식별자)
 
 Request Body
@@ -105,30 +115,34 @@ json
     "password": "1234"
 }
 
-Response (204 No Content)
+Response (200 OK)
 
-## 에러응답
+## content table
+## 댓글생성
+Method : POST
+EndPoint : http://localhost:8080/calendars/{calendarsId}/content
 
-400 Bad Request
+
+RequestBody
+
 json
 {
-    "message": "필수 내용이 누락되었습니다."
+"content": "안녕하세요",
+"userName": "홍길동",
+"password": "1234"
 }
-
-404 Not Found
+Response (201 Created)
 json
 {
-    "message": "해당 일정을 찾을 수 없습니다."
+"id": 1,
+"userName": "안녕하세요",
+"content": "홍길동",
+"createdAt": "2026-01-02T10:50:25.2654851",
+"updatedAt": "2026-01-02T10:50:25.2654851"
 }
 
 
 
-##ERD
-       calendars
-id (pk)         BIGINT
-title           VARCHAR
-description     VARCHAR
-userName        VARCHAR
-password        VARCHAR
-createdAt       DATETIME
-modifiedAt      DATETIME
+
+## ERD
+![img.png](img.png)

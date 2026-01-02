@@ -2,19 +2,22 @@ package com.calendar.service;
 
 import com.calendar.dto.*;
 import com.calendar.entity.Calendar;
+import com.calendar.entity.Comment;
 import com.calendar.repository.CalendarRepository;
+import com.calendar.repository.CommentRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
-
 public class CalendarService {
     private final CalendarRepository calendarRepository;
+    private final CommentRepository commentRepository;
 
     @Transactional
     public CreateCalendarResponse save(CreateCalendarRequest request) {
@@ -22,7 +25,8 @@ public class CalendarService {
                 request.getTitle(),
                 request.getDescription(),
                 request.getUserName(),
-                request.getPassword());
+                request.getPassword()
+                );
         Calendar savedCalendar = calendarRepository.save(calendar);
         return new CreateCalendarResponse(
                 savedCalendar.getId(),
@@ -34,22 +38,23 @@ public class CalendarService {
     }
 
     @Transactional(readOnly = true)
-    public List<GetCalendarResponse> findAll(String userName) {
+    public List<GetCalendarsResponse> findAll(String userName) {
         List<Calendar> calendars;
         if (userName != null) {
             calendars = calendarRepository.findAllByUserNameOrderByModifiedAtDesc(userName);
         } else {
             calendars = calendarRepository.findAllByOrderByModifiedAtDesc();
         }
-        List<GetCalendarResponse> dtos = new ArrayList<>();
+        List<GetCalendarsResponse> dtos = new ArrayList<>();
         for(Calendar calendar : calendars) {
-            GetCalendarResponse response = new GetCalendarResponse(
+            GetCalendarsResponse response = new GetCalendarsResponse(
                     calendar.getId(),
                     calendar.getUserName(),
                     calendar.getDescription(),
                     calendar.getTitle(),
                     calendar.getCreatedAt(),
                     calendar.getModifiedAt()
+
             );
             dtos.add(response);
         }
@@ -57,18 +62,27 @@ public class CalendarService {
     }
 
     @Transactional(readOnly = true)
-    public GetCalendarResponse findOne(Long calendarId) {
+    public GetCalendarOneResponse findOne(Long calendarId) {
         Calendar calendar = calendarRepository.findById(calendarId).orElseThrow(
                 () -> new IllegalStateException("없는 일정입니다.")
         );
-
-        return new GetCalendarResponse(
+        List<Comment> comments = commentRepository.findAllByCalendarId(calendarId);
+        List<GetCommentResponse> commentResponses = comments.stream().map
+                        (comment -> new GetCommentResponse(
+                        comment.getId(),
+                        comment.getContent(),
+                        comment.getUserName(),
+                        comment.getCreatedAt(),
+                        comment.getModifiedAt()
+                )).collect(Collectors.toList());
+        return new GetCalendarOneResponse(
                 calendar.getId(),
                 calendar.getUserName(),
                 calendar.getDescription(),
                 calendar.getTitle(),
                 calendar.getCreatedAt(),
-                calendar.getModifiedAt()
+                calendar.getModifiedAt(),
+                commentResponses
         );
     }
 

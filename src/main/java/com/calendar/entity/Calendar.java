@@ -5,6 +5,7 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -15,8 +16,9 @@ public class Calendar extends BaseEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(length = 50, nullable = false)
+    @Column(length = 30, nullable = false)
     private String title;
+    @Column(length = 200, nullable = false)
     private String description;
     @Column(length = 50, nullable = false)
     private String userName;

@@ -23,12 +23,12 @@ public class CalendarController {
     }
 
     @GetMapping("/calendars")
-    public ResponseEntity<List<GetCalendarResponse>> getAll(@RequestParam(required = false) String userName) {
+    public ResponseEntity<List<GetCalendarsResponse>> getAll(@RequestParam(required = false) String userName) {
         return ResponseEntity.status(HttpStatus.OK).body(calendarService.findAll(userName));
     }
 
     @GetMapping("/calendars/{calendarsId}")
-    public ResponseEntity<GetCalendarResponse> getOne(@PathVariable Long calendarsId){
+    public ResponseEntity<GetCalendarOneResponse> getOne(@PathVariable Long calendarsId){
         return ResponseEntity.status(HttpStatus.OK).body(calendarService.findOne(calendarsId));
     }
 
