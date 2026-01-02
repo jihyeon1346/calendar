@@ -146,3 +146,22 @@ json
 
 ## ERD
 ![img.png](img.png)
+
+## POSTMAN 결과
+<img width="1471" height="760" alt="image" src="https://github.com/user-attachments/assets/180729da-524a-4b1b-ab81-38ba482d6749" />
+<img width="1457" height="907" alt="image" src="https://github.com/user-attachments/assets/424f007b-8243-4e36-b8c1-bfbd6f6d52b6" />
+<img width="1464" height="754" alt="image" src="https://github.com/user-attachments/assets/60ed88f5-917a-44b9-b481-ac6c05f2a81e" />
+<img width="1488" height="865" alt="image" src="https://github.com/user-attachments/assets/de0f711e-a274-436c-8ccf-ffcfbf81d978" />
+<img width="1462" height="738" alt="image" src="https://github.com/user-attachments/assets/57ac497f-39d2-4a34-b432-b55f043a4018" />
+<img width="1467" height="681" alt="image" src="https://github.com/user-attachments/assets/eab97a24-828c-4705-a16d-83218d64e999" />
+<img width="1474" height="766" alt="image" src="https://github.com/user-attachments/assets/fe1bcf96-7e6a-40fc-9698-c7936b861151" />
+<img width="1437" height="800" alt="image" src="https://github.com/user-attachments/assets/b58ce075-d2ee-408d-b74a-1318fcd73faf" />
+
+
+
+
+
+
+
+
+
